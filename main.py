@@ -1,5 +1,22 @@
 
+def pedir_numero(prompt: str):
+    """Pide un número hasta que sea válido. Acepta coma o punto decimal."""
+    while True:
+        s = input(prompt).strip()
+        print(s)
+        if s.lower() == "exit":
+            return None  # permite salir también en este punto
+        
+        # Aceptar formato local: "3,14" -> "3.14"
+        t = s.replace(",", ".")
+
 def main():
+    OPS = {
+        "1": ("+", lambda a, b: a + b),
+        "2": ("-", lambda a, b: a - b),
+        "3": ("*", lambda a, b: a * b),
+        "4": ("/", lambda a, b: a / b),
+    }
     # Loop until the user decides to exit
     while True:
 
@@ -25,8 +42,8 @@ def main():
             return
         elif input_user in ["1", "2", "3", "4"]:
 
-                num1 = input("\n* Enter the first number: ")
-                num2 = input("* Enter the second number: ")
+                num1 = pedir_numero("\n* Enter the first number: ")
+                num2 = pedir_numero("* Enter the second number: ")
                 
                 if num1.isdigit() and num2.isdigit():
                     if input_user == "4" and num2 == "0":
