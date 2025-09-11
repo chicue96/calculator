@@ -1,25 +1,53 @@
 
 def main():
+    while True:
 
-    print("|==================================|")
-    print("| Terminal Calculator              |")
-    print("|==================================|")
-    print("|                                  |")
-    print("| Type the number of the operation |")
-    print("| 1. Addition (+)                  |")
-    print("| 2. Subtraction (-)               |")
-    print("| 3. Multiplication (*)            |")
-    print("| 4. Division (/)                  |")
-    print("|                                  |")
-    print("| Type 'exit' to quit              |")
-    print("|__________________________________|")
+        print("")
+        print("|==================================|")
+        print("| Terminal Calculator              |")
+        print("|==================================|")
+        print("|                                  |")
+        print("| Type the number of the operation |")
+        print("| 1. Addition (+)                  |")
+        print("| 2. Subtraction (-)               |")
+        print("| 3. Multiplication (*)            |")
+        print("| 4. Division (/)                  |")
+        print("|                                  |")
+        print("| Type 'exit' to quit              |")
+        print("|__________________________________|")
+        print("")
 
-    input_user = input("\n Enter your choice: ")
+        input_user = input("* Enter your choice: ")
 
-    if input_user == "exit":
-        print("Exiting the calculator. Goodbye!")
-        return
+        if input_user == "exit":
+            print("\nExiting the calculator. Goodbye!")
+            return
+        elif input_user in ["1", "2", "3", "4"]:
 
+                num1 = input("\n* Enter the first number: ")
+                num2 = input("* Enter the second number: ")
+                if num1.isdigit() or num2.isdigit():#isinstance(num1, float) or isinstance(num2, float):
+                    if input_user == "1":
+                        result = int(num1) + int(num2)
+                        operation = "+"
+                    elif input_user == "2":
+                        result = int(num1) - int(num2)
+                        operation = "-"
+                    elif input_user == "3":
+                        result = int(num1) * int(num2)
+                        operation = "*"
+                    elif input_user == "4":
+                        if int(num2) == 0:
+                            print("Error: Division by zero is not allowed.")
+                            return
+                        result = int(num1) / int(num2)
+                        operation = "/"
+
+                    print(f"\n Result: {num1} {operation} {num2} = {result}\n")
+                else:
+                    print("* Error: Please enter valid numbers.")            
+        else:
+            print("Invalid choice. Please select a valid operation.")
 
 if __name__ == "__main__": # solo corre si ejecuto main.py directamente
     main()
