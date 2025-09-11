@@ -1,5 +1,6 @@
 
 def main():
+    # Loop until the user decides to exit
     while True:
 
         print("")
