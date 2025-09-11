@@ -18,7 +18,7 @@ def main():
         print("|__________________________________|")
         print("")
 
-        input_user = input("* Enter your choice: ")
+        input_user = input("* Enter your choice: ").strip().lower()
 
         if input_user == "exit":
             print("\nExiting the calculator. Goodbye!")
@@ -27,28 +27,29 @@ def main():
 
                 num1 = input("\n* Enter the first number: ")
                 num2 = input("* Enter the second number: ")
-                if num1.isdigit() or num2.isdigit():#isinstance(num1, float) or isinstance(num2, float):
-                    if input_user == "1":
-                        result = int(num1) + int(num2)
-                        operation = "+"
-                    elif input_user == "2":
-                        result = int(num1) - int(num2)
-                        operation = "-"
-                    elif input_user == "3":
-                        result = int(num1) * int(num2)
-                        operation = "*"
-                    elif input_user == "4":
-                        if int(num2) == 0:
-                            print("Error: Division by zero is not allowed.")
-                            return
-                        result = int(num1) / int(num2)
-                        operation = "/"
+                
+                if num1.isdigit() and num2.isdigit():
+                    if input_user == "4" and num2 == "0":
+                        print("\n* Error: Division by zero is not allowed.")
+                    else:
+                        if input_user == "1":
+                            result = int(num1) + int(num2)
+                            operation = "+"
+                        elif input_user == "2":
+                            result = int(num1) - int(num2)
+                            operation = "-"
+                        elif input_user == "3":
+                            result = int(num1) * int(num2)
+                            operation = "*"
+                        elif input_user == "4":
+                            result = int(num1) / int(num2)
+                            operation = "/"
 
-                    print(f"\n Result: {num1} {operation} {num2} = {result}\n")
+                        print(f"\n Result: {num1} {operation} {num2} = {result}\n")
                 else:
                     print("* Error: Please enter valid numbers.")            
         else:
-            print("Invalid choice. Please select a valid operation.")
+            print("\nInvalid choice. Please select a valid operation.")
 
 if __name__ == "__main__": # solo corre si ejecuto main.py directamente
     main()
