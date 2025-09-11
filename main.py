@@ -12,10 +12,9 @@ def main():
     print("| 4. Division (/)                  |")
     print("|                                  |")
     print("| Type 'exit' to quit              |")
-    print("|                                  |")
-    print("|==================================|")
+    print("|__________________________________|")
 
-    input_user = input(" Enter your choice: ")
+    input_user = input("\n Enter your choice: ")
 
     if input_user == "exit":
         print("Exiting the calculator. Goodbye!")
