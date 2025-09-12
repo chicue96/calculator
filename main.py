@@ -26,6 +26,7 @@ def main():
         "3": ("*", lambda a, b: a * b),
         "4": ("/", lambda a, b: a / b),
     }
+
     # Loop until the user decides to exit
     while True:
 
