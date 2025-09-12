@@ -1,14 +1,23 @@
+import math
 
 def pedir_numero(prompt: str):
-    """Pide un número hasta que sea válido. Acepta coma o punto decimal."""
+    """It requires a number until it's valid. It accepts a comma or decimal point."""
     while True:
         s = input(prompt).strip()
-        print(s)
+        
         if s.lower() == "exit":
             return None  # permite salir también en este punto
         
         # Aceptar formato local: "3,14" -> "3.14"
         t = s.replace(",", ".")
+        try:
+            x = float(t)
+            if math.isfinite(x): #evita inf, -inf, nan
+                return x
+            print("* Error: Please enter a finite number.")
+        except ValueError:
+            print("* Error: Please enter a valid number.")
+
 
 def main():
     OPS = {
@@ -38,35 +47,34 @@ def main():
         input_user = input("* Enter your choice: ").strip().lower()
 
         if input_user == "exit":
-            print("\nExiting the calculator. Goodbye!")
+            print("\n* Exiting the calculator. Goodbye!")
             return
-        elif input_user in ["1", "2", "3", "4"]:
+        if input_user not in OPS:
+            print("\n* Invalid choice. Please select a valid operation.")
+            continue
+        while True:
+            num1 = pedir_numero("\n* Enter the first number: ")
+            if num1 is None:
+                print("\n* Please enter a valid number.")
+                continue
+            else:
+                break
+        while True:
+            num2 = pedir_numero("* Enter the second number: ")
+            if num2 is None:
+                print("\n* Please enter a valid number.")
+                continue
+            else:
+                break
+        
+        symbol, op = OPS[input_user]
 
-                num1 = pedir_numero("\n* Enter the first number: ")
-                num2 = pedir_numero("* Enter the second number: ")
-                
-                if num1.isdigit() and num2.isdigit():
-                    if input_user == "4" and num2 == "0":
-                        print("\n* Error: Division by zero is not allowed.")
-                    else:
-                        if input_user == "1":
-                            result = int(num1) + int(num2)
-                            operation = "+"
-                        elif input_user == "2":
-                            result = int(num1) - int(num2)
-                            operation = "-"
-                        elif input_user == "3":
-                            result = int(num1) * int(num2)
-                            operation = "*"
-                        elif input_user == "4":
-                            result = int(num1) / int(num2)
-                            operation = "/"
+        if symbol == "/" and num2 == 0:
+            print("\n* Error: Division by zero is not allowed.")
+            continue
 
-                        print(f"\n Result: {num1} {operation} {num2} = {result}\n")
-                else:
-                    print("* Error: Please enter valid numbers.")            
-        else:
-            print("\nInvalid choice. Please select a valid operation.")
+        result = op(num1, num2)
+        print(f"\n* Result:\n> {num1:g} {symbol} {num2:g} = {result:g}\n")
 
 if __name__ == "__main__": # solo corre si ejecuto main.py directamente
     main()
