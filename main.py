@@ -6,7 +6,7 @@ def pedir_numero(prompt: str):
         s = input(prompt).strip()
         
         if s.lower() == "exit":
-            return None  # permite salir también en este punto
+            return None # permite salir también en este punto
         
         # Aceptar formato local: "3,14" -> "3.14"
         t = s.replace(",", ".")
@@ -56,14 +56,14 @@ def main():
         while True:
             num1 = pedir_numero("\n* Enter the first number: ")
             if num1 is None:
-                print("\n* Please enter a valid number.")
-                continue
+                print("\n* Exiting the calculator. Goodbye!")
+                return
             else:
                 break
         while True:
             num2 = pedir_numero("* Enter the second number: ")
             if num2 is None:
-                print("\n* Please enter a valid number.")
+                print("\n* Exiting the calculator. Goodbye!")
                 continue
             else:
                 break
