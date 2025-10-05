@@ -1,2 +1,2 @@
 # calculator
-Culculator created in python
+Calculator created in python
